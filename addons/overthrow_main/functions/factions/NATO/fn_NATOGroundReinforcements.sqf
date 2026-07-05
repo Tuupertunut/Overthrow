@@ -13,7 +13,6 @@ for "_i" from 1 to 4 do {
 };
 
 sleep 0.5;
-private _veh = false;
 private _pos = false;
 
 //Transport
@@ -43,7 +42,7 @@ if (_byair) then {
     _dir = (_frompos getDir _ao);
 };
 _pos set [2, 0];
-_veh = _vehtype createVehicle _pos;
+private _veh = _vehtype createVehicle _pos;
 _veh setDir (_dir);
 _veh setVariable ["garrison", "HQ", false];
 clearWeaponCargoGlobal _veh;

@@ -16,7 +16,6 @@ if !(_byair) then {
     _group2 deleteGroupWhenEmpty true;
 };
 sleep 0.5;
-private _veh = false;
 private _pos = false;
 
 //Transport
@@ -46,7 +45,7 @@ if (_byair) then {
     _dir = (_frompos getDir _ao);
 };
 _pos set [2, 1]; // Set the altitude to 1 to hopefully avoid explosions
-_veh = createVehicle [_vehtype, [0, 0, 1000 + random 1000], [], 0, "CAN_COLLIDE"];
+private _veh = createVehicle [_vehtype, [0, 0, 1000 + random 1000], [], 0, "CAN_COLLIDE"];
 _veh setDir (_dir);
 _veh setPosATL _pos;
 _veh setVariable ["garrison", "HQ", false];
