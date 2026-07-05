@@ -108,7 +108,7 @@ class Params {
         texts[] = {"Yes", "No"};
         default = 1;
     };
-    class ot_showenemygroup {
+    class ot_showenemygroups {
         title = "Show known enemy groups on map";
         values[] = {1, 0};
         texts[] = {"Yes", "No"};
