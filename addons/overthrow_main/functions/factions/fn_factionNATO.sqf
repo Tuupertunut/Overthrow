@@ -69,19 +69,24 @@ publicVariable "OT_nextNATOTurn";
 
             // Abandon towers
             // NATO loses 100 resources if it has to abandon a tower
-            [] call OT_fnc_NATOabandonTowers;
+            if !(_countered) then {
+                _countered = [] call OT_fnc_NATOabandonTowers;
+            };
 
             // Check on FOBs
             // No effect on resources
             [] call OT_fnc_NATOcheckFOBs;
 
             // Expire targets
+            _knownTargets = spawner getVariable ["NATOknownTargets", []];
             spawner setVariable ["NATOknownTargets", _knownTargets select { (time - (_x # 5)) < 800 }];
 
             // Scramble jets and helos
             // Price of jet scramble: 500
             // Price of heli scramble: 350
-            [] call OT_fnc_NATOscrambleAircraft;
+            if !(_countered) then {
+                _countered = [] call OT_fnc_NATOscrambleAircraft;
+            };
 
             //NATO gets to play if it hasn't reacted to anything
             if (time >= OT_nextNATOTurn && !_countered) then {
@@ -151,8 +156,9 @@ publicVariable "OT_nextNATOTurn";
                     _chance = _chance - 5;
                 };
 
+                //Deploy an FOB
                 if (!(spawner getVariable ["NATOdeploying", false]) && { (_spend > 500) } && { (count (server getVariable ["NATOfobs", []])) < 3 } && { (random 100) > _chance }) then {
-                    [] call OT_fnc_NATOdeployFOB;
+                    _spend = [_spend] call OT_fnc_NATOdeployFOB;
                 };
 
                 //Reinforce gendarm
@@ -183,7 +189,7 @@ publicVariable "OT_nextNATOTurn";
                 //Send an air patrol
                 _last = spawner getVariable ["NATOlastairpatrol", 0];
                 if ((time - _last) > 3600 && _spend > 250 && _popControl > 750) then {
-                    _spend = [_spend] call OT_fnc_NATOsendAirPatrol;
+                    _spend = [_spend, _chance] call OT_fnc_NATOsendAirPatrol;
                 };
 
                 //Upgrade garrisons
