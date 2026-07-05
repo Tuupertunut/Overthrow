@@ -135,7 +135,7 @@ class CfgVehicles {
             class ACE_Equipment {
                 class OT_StartSpliff {
                     displayName = "Smoke a spliff";
-                    condition = "('OT_Ganja' in (items player)) && { !(_player getVariable ['ot_isSmoking', false]) }";
+                    condition = "('OT_Ganja' in (items _player)) && { !(_player getVariable ['ot_isSmoking', false]) }";
                     statement = "[_player] spawn OT_fnc_startSpliff";
                     showDisabled = 0;
                     exceptions[] = {"isNotInside", "isNotSitting"};
