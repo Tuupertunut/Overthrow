@@ -483,6 +483,10 @@ sleep 0.3;
             };
             sleep 0.1;
         } forEach (_garrison);
+
+        {
+            _x addCuratorEditableObjects [units _group, true];
+        } forEach (allCurators);
     };
     private _mrkid = format ["%1-base", _pos];
     createMarkerLocal [_mrkid, _pos];
@@ -517,6 +521,10 @@ sleep 0.3;
             };
             sleep 0.1;
         } forEach (_garrison);
+
+        {
+            _x addCuratorEditableObjects [units _group, true];
+        } forEach (allCurators);
     };
 } forEach (OT_objectiveData + OT_airportData);
 

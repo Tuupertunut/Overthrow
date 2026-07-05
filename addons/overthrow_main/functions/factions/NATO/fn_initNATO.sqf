@@ -493,6 +493,10 @@ private _revealed = server getVariable ["revealedFOBs", []];
     };
     _group call OT_fnc_initMilitaryPatrol;
 
+    {
+        _x addCuratorEditableObjects [units _group, true];
+    } forEach allCurators;
+
     [_pos, _upgrades] call OT_fnc_NATOupgradeFOB;
 
     private _id = str _pos;

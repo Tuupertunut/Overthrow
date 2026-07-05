@@ -16,7 +16,6 @@ if !(_byair) then {
     _group2 deleteGroupWhenEmpty true;
 };
 sleep 0.5;
-private _allunits = [];
 private _veh = false;
 private _pos = false;
 
@@ -63,9 +62,8 @@ createVehicleCrew _veh;
     _x setVariable ["garrison", "HQ", false];
     _x setVariable ["NOAI", true, false];
 } forEach (crew _veh);
-_allunits = (units _tgroup);
 {
-    _x addCuratorEditableObjects [(units _tgroup) + [_veh], true];
+    _x addCuratorEditableObjects [[_veh], true];
 } forEach allCurators;
 sleep 1;
 
@@ -76,7 +74,6 @@ _tgroup deleteGroupWhenEmpty true;
         _x moveInCargo _veh;
     };
     [_x] joinSilent _group1;
-    _allunits pushBack _x;
     _x setVariable ["garrison", "HQ", false];
     _x setVariable ["VCOM_NOPATHING_Unit", true, false];
 
@@ -96,7 +93,6 @@ if !(_byair) then {
         };
         [_x] joinSilent _group2;
         _x setVariable ["VCOM_NOPATHING_Unit", true, false];
-        _allunits pushBack _x;
         _x setVariable ["garrison", "HQ", false];
         [_x] call OT_fnc_initMilitary;
     } forEach (units _group2);

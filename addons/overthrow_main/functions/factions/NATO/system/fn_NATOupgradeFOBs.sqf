@@ -39,6 +39,10 @@ private _fobs = server getVariable ["NATOfobs", []];
             _count = _count + 1;
         };
         _group call OT_fnc_initMilitaryPatrol;
+
+        {
+            _x addCuratorEditableObjects [units _group, true];
+        } forEach allCurators;
     };
 
     if (!("Mortar" in _upgrades) && { (_spend > 300) } && { (random 100 > _chance) }) exitWith {
