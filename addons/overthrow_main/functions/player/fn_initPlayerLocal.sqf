@@ -486,6 +486,9 @@ if (isClass (configFile >> "CfgPatches" >> "zen_common")) then {
     systemChat "Zeus Enhanced not detected, consider adding it to your modlist for Overthrow specific functionality";
 };
 
+[OT_fnc_notificationLoop, [], 1] call CBA_fnc_waitAndExecute;
+[OT_fnc_perkSystem, [], 1] call CBA_fnc_waitAndExecute;
+
 [] call OT_fnc_setupPlayer;
 _introcam cameraEffect ["Terminate", "BACK"];
 camDestroy _introcam;
