@@ -42,7 +42,7 @@ if (!isServer) then {
     //ACE3 events
     ["ace_cargoLoaded", OT_fnc_cargoLoadedHandler] call CBA_fnc_addEventHandler;
     ["ace_common_setFuel", OT_fnc_refuelHandler] call CBA_fnc_addEventHandler;
-    ["ace_explosives_place", OT_fnc_explosivesPlacedHandler] call CBA_fnc_addEventHandler;
+    ["ace_explosives_setup", OT_fnc_explosivesPlacedHandler] call CBA_fnc_addEventHandler;
     ["ace_repair_setWheelHitPointDamage", OT_fnc_wheelStateHandler] call CBA_fnc_addEventHandler;
     ["ace_treatmentSucceded", OT_fnc_healedHandler] call CBA_fnc_addEventHandler;
     //Overthrow events
