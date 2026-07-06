@@ -17,7 +17,6 @@ publicVariable "OT_nextNATOTurn";
         private _numplayers = count (allPlayers - (entities "HeadlessClient_F"));
         if (_numplayers > 0) then {
             private _countered = (server getVariable ["NATOattacking", ""]) isNotEqualTo "";
-            private _knownTargets = spawner getVariable ["NATOknownTargets", []];
             private _schedule = server getVariable ["NATOschedule", []];
             private _popControl = call OT_fnc_getControlledPopulation;
             private _diff = server getVariable ["OT_difficulty", 1];
@@ -78,7 +77,7 @@ publicVariable "OT_nextNATOTurn";
             [] call OT_fnc_NATOcheckFOBs;
 
             // Expire targets
-            _knownTargets = spawner getVariable ["NATOknownTargets", []];
+            private _knownTargets = spawner getVariable ["NATOknownTargets", []];
             spawner setVariable ["NATOknownTargets", _knownTargets select { (time - (_x # 5)) < 800 }];
 
             // Scramble jets and helos
