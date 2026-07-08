@@ -473,6 +473,12 @@ publicVariable "OT_allObjectives";
     };
 } forEach (OT_NATOcomms);
 
+{
+    private _name = _x;
+    private _pos = getMarkerPos _name;
+    server setVariable [_name, _pos, true];
+} forEach (OT_NATO_control);
+
 private _revealed = server getVariable ["revealedFOBs", []];
 {
     _x params ["_pos", "_garrison", "_upgrades"];
